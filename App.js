@@ -1,27 +1,28 @@
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "@rneui/themed";
 import { Header } from "@rneui/base";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import theme from './theme.js';
 
-import PwCard from "./components/PwCard.js";
+import theme from './src/app/theme.js';
+import { store } from "./src/app/store";
+import { Provider as StoreProvider } from "react-redux";
+import PwPostList from "./src/features/posts/PwPostList.js";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <Header
-          centerComponent={{ text: "Comida Sana", style: { color: "#fff" } }}
-        ></Header>
-        <ScrollView>
-          <PwCard title="Publicación 1"></PwCard>
-          <PwCard title="Publicación 2"></PwCard>
-          <PwCard title="Publicación 3"></PwCard>
-          <PwCard title="Publicación 4"></PwCard>
-        </ScrollView>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <StoreProvider store={store}>
+        <ThemeProvider theme={theme}>
+          <Header
+            centerComponent={{ text: "Comida Sana", style: { color: "#fff" } }}
+          ></Header>
+          <ScrollView>
+            <PwPostList />
+          </ScrollView>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </StoreProvider>
     </SafeAreaProvider>
   );
 }
