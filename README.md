@@ -4,7 +4,7 @@
   ```bash
     npm install cypress vitest jsdom @testing-library/jest-dom @testing-library/react --save-dev
   ```
-3. Add a jest-setup.js file with the following content:
+3. Add a `jest-setup.js` file with the following content:
   ```js
   import '@testing-library/jest-dom';
   ```
